@@ -1,6 +1,13 @@
 package iii_conventions
 
-data class MyDate(val year: Int, val month: Int, val dayOfMonth: Int)
+data class MyDate(val year: Int, val month: Int, val dayOfMonth: Int) {
+    operator fun compareTo(other: MyDate): Int = when {
+        year != other.year -> year - other.year
+        month != other.month -> month - other.month
+        dayOfMonth != other.dayOfMonth -> dayOfMonth - other.dayOfMonth
+        else -> 0
+    }
+}
 
 operator fun MyDate.rangeTo(other: MyDate): DateRange = todoTask27()
 
@@ -10,4 +17,8 @@ enum class TimeInterval {
     YEAR
 }
 
-class DateRange(val start: MyDate, val endInclusive: MyDate)
+class DateRange(val start: MyDate, val endInclusive: MyDate) {
+    operator fun contains(d: MyDate): Boolean {
+        return d >= start && d <= endInclusive
+    }
+}
