@@ -15,7 +15,7 @@ class N34DelegatesExamplesKtTest {
 
     @Test fun initializedOnce() {
         var initialized = 0
-        val lazyProperty = LazyPropertyUsingDelegates( { initialized++; 42 })
+        val lazyProperty = LazyPropertyUsingDelegates { initialized++; 42 }
         lazyProperty.lazyValue
         lazyProperty.lazyValue
         assertEquals("Lazy property should be initialized once", 1, initialized)
